@@ -138,8 +138,9 @@ Typecheck and lint reported no diagnostics. The build reported an existing warni
 - Bookings and blocked status exist only in memory. There is no persistence or synchronization between users or tabs.
 - The fixed 09:00 clock and fictional data are intentional demo constraints.
 - jsdom tests verify rendered interactions, not real-browser layout, native time pickers or screen-reader announcements. Dedicated keyboard/focus and cross-browser tests remain absent.
-- Although the domain accepts minute 1440, the formatter displays it as `00:00`; native time inputs may not expose `24:00` as an entry option.
+- The formatter displays minute 1440 as `24:00` and minute 0 as `00:00`.
+- Entering `24:00` in a real browser remains unverified; native time inputs may not expose it as an entry option.
 - Validation-message precedence when several rules fail simultaneously is not comprehensively tested.
-- The page references Google Fonts. The application does not call a live booking API; the declared Supabase dependency is unused.
+- The page references Google Fonts. The application does not call a live booking API; the unused Supabase dependency has been removed.
 
 Assignment context is recorded in [PROJECT_CONTEXT.MD](PROJECT_CONTEXT.MD), with an AI-work log in [AI_LOG.MD](AI_LOG.MD).

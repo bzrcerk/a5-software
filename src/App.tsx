@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Clock, Building2, Info } from 'lucide-react';
 import {
+  MAX_BOOKING_MINUTES,
   formatTime,
   timeToMinutes,
 } from '@/lib/booking';
@@ -125,7 +126,7 @@ function App() {
           <ul className="text-xs text-slate-500 space-y-1.5 leading-relaxed">
             <li>• Start time must be earlier than end time.</li>
             <li>• Booking cannot start in the past or at the current moment.</li>
-            <li>• Maximum duration: 120 minutes (exactly 120 is allowed).</li>
+            <li>• Maximum duration: {MAX_BOOKING_MINUTES} minutes (exactly {MAX_BOOKING_MINUTES} is allowed).</li>
             <li>• Blocked rooms cannot be booked.</li>
             <li>• No overlap with existing bookings — touching endpoints are fine.</li>
           </ul>

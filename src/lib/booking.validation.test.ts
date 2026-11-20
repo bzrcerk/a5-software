@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { checkAvailability, timeToMinutes, type Booking } from './booking'
+import { checkAvailability, formatTime, timeToMinutes, type Booking } from './booking'
 
 describe('Time input validation regressions', () => {
+	it('formats start-of-day and end-of-day boundaries distinctly', () => {
+		expect(formatTime(0)).toBe('00:00')
+		expect(formatTime(1440)).toBe('24:00')
+	})
+
 	it.each(['', ' ', '9:00', '09:0', '09:', ':30', '09:00:00', '09:00extra',
 		' 09:00', '09:00 ', '09:00\n', 'ab:cd', '-1:00', '12:60', '24:01', '25:00'])(
 	'rejects malformed time %j through the UI conversion path', (input) => {

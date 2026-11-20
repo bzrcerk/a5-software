@@ -1,3 +1,5 @@
+export const MAX_BOOKING_MINUTES = 120
+
 export interface Booking {
 	id: string
 	start: number // minutes since midnight
@@ -21,6 +23,7 @@ export function timeToMinutes(time: string): number {
 }
 
 export function formatTime(minutes: number): string {
+	if (minutes === 1440) return '24:00'
 	const h = Math.floor(minutes / 60) % 24
 	const m = minutes % 60
 	return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
@@ -79,10 +82,10 @@ export function checkAvailability(
 	}
 
 	const duration = end - start
-	if (duration > 120) {
+	if (duration > MAX_BOOKING_MINUTES) {
 		return {
 			available: false,
-			reason: `Duration is ${duration} minutes — maximum allowed is 120.`,
+			reason: `Duration is ${duration} minutes — maximum allowed is ${MAX_BOOKING_MINUTES}.`,
 		}
 	}
 
